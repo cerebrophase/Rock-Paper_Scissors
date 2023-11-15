@@ -12,11 +12,11 @@
 
             switch (randomNum) {
                 case 0:
-                    return "Rock";
+                    return "rock";
                 case 1:
-                    return "Paper";
+                    return "paper";
                 case 2:
-                    return "Scissors";
+                    return "scissors";
                 default:
                     return null;
             }
@@ -26,7 +26,6 @@
 
         function playRound(playerSelection, computerSelection) {
             playerSelection = playerSelection.toLowerCase();
-            computerSelection = computerSelection.toLowerCase();
 
             const choices = ['rock', 'paper', 'scissors'];
 
@@ -41,9 +40,40 @@
             }
         }
 
-        const playerSelection = "paper";
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            
+            for (let round = 1; round <= 5; round++) {
+                
+                let playerChoice = prompt("Round " + round + ": Enter Rock, Paper or Scissors");
+                let computerChoice = getComputerChoice();
+                let roundResult = playRound(playerChoice, computerChoice);
+                console.log(roundResult);
+                
+                if (roundResult.includes("Win")) {
+                    playerScore++;
+                }
+                else if (roundResult.includes("Lose")) {
+                    computerScore++;
+                }
+            }
+
+
+            let gameResult;
+            if (playerScore > computerScore) {
+                gameResult = "Congratulations! You won the game!";
+            }
+            else if (playerScore < computerScore) {
+                gameResult = "Sorry, You lose better luck next time."
+            }
+            else {
+                gameResult = "It's a tie, the game is drawn."
+            }
+            console.log(gameResult);
+        }
+
+        game();
     </script>
 </body>
 </html>
