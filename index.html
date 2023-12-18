@@ -4,75 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
-        function getComputerChoice() {
-            const randomNum = Math.floor(Math.random() * 3);
-
-            switch (randomNum) {
-                case 0:
-                    return "rock";
-                case 1:
-                    return "paper";
-                case 2:
-                    return "scissors";
-                default:
-                    return null;
-            }
-        }
-        let computerChoice = getComputerChoice();
-        console.log(getComputerChoice(computerChoice));
-
-        function playRound(playerSelection, computerSelection) {
-            playerSelection = playerSelection.toLowerCase();
-
-            const choices = ['rock', 'paper', 'scissors'];
-
-            if (playerSelection === computerSelection) {
-                return "It's a tie! You both chose " + playerSelection + ".";
-            }
-            else if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'rock') {
-                return "You Win! " + playerSelection + " beats " + computerSelection + ".";
-            }
-            else {
-                return "You Lose! " + computerSelection + " beats " + playerSelection + ".";
-            }
-        }
-
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-            
-            for (let round = 1; round <= 5; round++) {
-                
-                let playerChoice = prompt("Round " + round + ": Enter Rock, Paper or Scissors");
-                let computerChoice = getComputerChoice();
-                let roundResult = playRound(playerChoice, computerChoice);
-                console.log(roundResult);
-                
-                if (roundResult.includes("Win")) {
-                    playerScore++;
-                }
-                else if (roundResult.includes("Lose")) {
-                    computerScore++;
-                }
-            }
-            
-            let gameResult;
-            if (playerScore > computerScore) {
-                gameResult = "Congratulations! You won the game!";
-            }
-            else if (playerScore < computerScore) {
-                gameResult = "Sorry, You lose better luck next time."
-            }
-            else {
-                gameResult = "It's a tie, the game is drawn."
-            }
-            console.log(gameResult);
-        }
-
-        game();
-    </script>
+    <div id="start-container" class="visible"> 
+        <h1>ROCK PAPER SCISSORS GAME</h1>
+        <button onclick="startGame()">START GAME</button>
+    </div>
+    <div id="game-container" class="hidden">
+            <h2>Make your Move</h2>
+        <div id="buttons">
+            <button onclick="playerChoice('rock')">ROCK</button>
+            <button onclick="playerChoice('paper')">PAPER</button>
+            <button onclick="playerChoice('scissors')">SCISSORS</button>
+        </div>
+        <h3>Round Result</h3>
+        <div id="result"></div>
+        <div id="scoreMessage">
+        </div>
+        <div id="finalResults" class="hidden">
+            <h2>Final Results</h2>
+            <div id="winner"></div>
+            <button onclick="playAgain()">Play Again</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
